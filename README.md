@@ -52,7 +52,7 @@ Now you can visit ``` http://127.0.0.1:80 ``` on your local browser to access th
 
 ```Backend (backend/person_det.py):``` <br />
 2. Backend: <br />
-      - The backend is a Flask web application that runs an Inference Engine (OpenVINO) to perform pedestrian detection. <br />
+    - The backend is a Flask web application that runs an Inference Engine (OpenVINO) to perform pedestrian detection. <br />
       - The backend loads the pre-trained pedestrian detection model (IR files) using OpenVINO. <br />
       - It defines an endpoint /detect_people that accepts POST requests with an image file. <br />
       - Upon receiving the image file, it converts the image from bytes to a NumPy array using OpenCV. <br />
