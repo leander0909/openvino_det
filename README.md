@@ -51,19 +51,17 @@ Now you can visit ``` http://127.0.0.1:80 ``` on your local browser to access th
     - The resized image is then converted to a byte stream and sent as a file in a POST request to the /detect_people endpoint of the backend. <br />
 
 ```Backend (backend/person_det.py):```
-
 2. Backend: <br />
     - The backend is a Flask web application that runs an Inference Engine (OpenVINO) to perform pedestrian detection. <br />
-      - The backend loads the pre-trained pedestrian detection model (IR files) using OpenVINO. <br />
-      - It defines an endpoint /detect_people that accepts POST requests with an image file. <br />
-      - Upon receiving the image file, it converts the image from bytes to a NumPy array using OpenCV. <br />
-      - The input image is resized to match the expected input shape of the model (672x384 pixels). <br />
-      - Inference is performed on the resized image using the loaded model through the Inference Engine. <br />
-      - The bounding boxes of detected pedestrians are extracted based on a confidence threshold (set at 0.8 in this case). <br />
-      - The bounding box information, including coordinates and confidence scores, is then sent back to the frontend as a JSON response. <br />
+    - The backend loads the pre-trained pedestrian detection model (IR files) using OpenVINO. <br />
+    - It defines an endpoint /detect_people that accepts POST requests with an image file. <br />
+    - Upon receiving the image file, it converts the image from bytes to a NumPy array using OpenCV. <br />
+    - The input image is resized to match the expected input shape of the model (672x384 pixels). <br />
+    - Inference is performed on the resized image using the loaded model through the Inference Engine. <br />
+    - The bounding boxes of detected pedestrians are extracted based on a confidence threshold (set at 0.8 in this case). <br />
+    - The bounding box information, including coordinates and confidence scores, is then sent back to the frontend as a JSON response. <br />
 
 ```Frontend (frontend/frontend.py):```
-
 3. Frontend: (Continued) <br />
     - The frontend receives the JSON response from the backend containing bounding box information.
     - If the response status code is 200 (indicating success), the frontend draws bounding boxes on the original image using OpenCV.
