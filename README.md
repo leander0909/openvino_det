@@ -51,6 +51,7 @@ Now you can visit ``` http://127.0.0.1:80 ``` on your local browser to access th
     - The resized image is then converted to a byte stream and sent as a file in a POST request to the /detect_people endpoint of the backend. <br />
 
 ```Backend (backend/person_det.py):```
+
 2. Backend: <br />
     - The backend is a Flask web application that runs an Inference Engine (OpenVINO) to perform pedestrian detection. <br />
       - The backend loads the pre-trained pedestrian detection model (IR files) using OpenVINO. <br />
@@ -62,6 +63,7 @@ Now you can visit ``` http://127.0.0.1:80 ``` on your local browser to access th
       - The bounding box information, including coordinates and confidence scores, is then sent back to the frontend as a JSON response. <br />
 
 ```Frontend (frontend/frontend.py):```
+
 3. Frontend: (Continued) <br />
     - The frontend receives the JSON response from the backend containing bounding box information.
     - If the response status code is 200 (indicating success), the frontend draws bounding boxes on the original image using OpenCV.
