@@ -17,7 +17,7 @@ openvino_det/
 │   └── model/
 │       ├── pedestrian-detection-adas-0002.bin
 |       └── pedestrian-detection-adas-0002.xml
-├── frontend/
+└── frontend/
     ├── Dockerfile
     ├── frontend.py
     ├── requirements.txt
