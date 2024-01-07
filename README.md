@@ -39,9 +39,9 @@ The code above will setup the two Docker containers, one for frontend and one fo
 
 Now you can visit ``` http://127.0.0.1:80 ``` on your local browser to access the website.
 
-
-
-
+<br />
+<br />
+<br />
 ## Here is the flow of the whole code:
 ```Frontend (frontend/frontend.py):```
 1. Frontend: <br />
