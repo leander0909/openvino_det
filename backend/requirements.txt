@@ -1,0 +1,5 @@
+opencv-python
+openvino
+flask
+requests
+numpy
