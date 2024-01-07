@@ -39,9 +39,9 @@ The code above will setup the two Docker containers, one for frontend and one fo
 
 Now you can visit ``` http://127.0.0.1:80 ``` on your local browser to access the website.
 
-<br />
-<br />
-<br />
+
+
+
 ## Here is the flow of the whole code:
 ```Frontend (frontend/frontend.py):```
 1. Frontend: <br />
@@ -72,7 +72,7 @@ Now you can visit ``` http://127.0.0.1:80 ``` on your local browser to access th
    
 
 ```Overall Flow:``` <br />
-  *User uploads an image on the frontend. <br />
-  *The image is sent to the OpenCV backend for people detection. <br />
-  *The backend processes the image, detects people, and sends back the result. <br />
-  *The frontend renders a result page displaying the original and processed images.
+  - The communication between the frontend and backend is established using HTTP requests.
+  - The frontend sends a POST request to the /detect_people endpoint of the backend with the uploaded image.
+  - The backend processes the image, performs inference, and sends back the results as a JSON response.
+  - The frontend extracts the bounding box information and visualizes the results on the original image.
