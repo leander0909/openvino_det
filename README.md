@@ -39,3 +39,57 @@ The code above will setup the two Docker containers, one for frontend and one fo
 
 Now you can visit ``` http://127.0.0.1:80 ``` on your local browser to access the website.
 
+
+
+
+## Here is the flow of the whole code:
+```Frontend (frontend/frontend.py):```
+1. Frontend: <br />
+    - The frontend is a Flask web application that serves an HTML template at the root route ("/")
+2. Upload Page (/upload): <br />
+  *User uploads an image through a form. <br />
+  *The image is sent as a POST request to /upload route.
+3. Image Upload Handling: <br />
+  *The Flask app in the frontend (frontend.py) prepares the image data. <br />
+  *Sends a POST request to the OpenCV backend (detect_people endpoint) with the image attached.
+
+
+
+
+```Backend (opencv_backend/detect_people.py):``` <br />
+1. Detect People Endpoint (/detect_people): <br />
+  *Listens for POST requests containing an image to process.
+2. Image Processing: <br />
+  *Retrieves the image from the POST request. <br />
+  *Converts the image from bytes to a NumPy array using OpenCV. <br />
+  *Converts the image to grayscale.
+3. HOG Descriptor and Detection: <br />
+  *Initializes a Histogram of Oriented Gradients (HOG) descriptor. <br />
+  *Sets the Support Vector Machine (SVM) detector for detecting people. <br />
+  *Detects people in the image using HOG.
+4. Drawing Bounding Boxes: <br />
+  *Draws bounding boxes around detected people in the image.
+5. Image Encoding and Base64 Conversion: <br />
+  *Encodes the processed image to JPEG format. <br />
+  *Converts the encoded image to base64.
+6. JSON Response: <br />
+  *Sends a JSON response containing the base64-encoded image data.
+
+
+```Frontend (frontend/frontend.py):``` <br />
+1. Image Processing Response: <br />
+  *Waits for the response from the backend. <br />
+  *Attempts to parse the JSON response from the backend.
+2. Result Page (/result): <br />
+  *Renders a result page (result.html) with the processed image received from the backend. <br />
+3. Result Rendering: <br />
+  *Renders the result page (result.html) with the processed image data received from the backend. <br />
+  *The processed image is displayed on the result page. <br />
+
+   
+
+```Overall Flow:``` <br />
+  *User uploads an image on the frontend. <br />
+  *The image is sent to the OpenCV backend for people detection. <br />
+  *The backend processes the image, detects people, and sends back the result. <br />
+  *The frontend renders a result page displaying the original and processed images.
