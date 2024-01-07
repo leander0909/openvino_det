@@ -9,7 +9,7 @@
 - After selecting the image, click on the "Upload" button. </br>
 
 **3. View Results:** </br>
-- The uploaded image will be sent to the OpenCV backend for processing. </br>
+- The uploaded image will be sent to the OpenVINO backend for processing. </br>
 - Once processed, the frontend will display the result page with the processed image and bounding boxes around detected people. </br>
 
 ## **Code Explanation** </br>
