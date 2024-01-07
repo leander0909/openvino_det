@@ -31,7 +31,7 @@ openvino_det/
 
 You have different Docker containers for frontend and backend. Docker is necessary so that you can separate different dependencies to prevent "dependency conflict" or "dependency collision".
 
-### Once you make your Docker up and running (necessary for running the whole website), you can go to your terminal at your root directory which is ```open_cv_det```, then run the code below:
+### Once you make your Docker up and running (necessary for running the whole website), you can go to your terminal at your root directory which is ```openvino_det```, then run the code below:
 
 ``` docker-compose up --build ```
 
