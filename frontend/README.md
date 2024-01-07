@@ -20,7 +20,10 @@ The Dockerfile installs the required dependencies (Flask and Requests) within th
 
 ## Dependencies
 ### 1. Operating System: This Dockerfile is based on the ```python:3.8-slim``` image, which uses Debian Slim as the base operating system.
-### 2. Python Packages:
+### 2. System Libraries: </br>
+- libgl1-mesa-glx </br>
+- libglib2.0-0 </br>
+### 3. Python Packages:
 - opencv-python
 - flask
 - requests
