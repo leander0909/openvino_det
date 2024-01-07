@@ -45,47 +45,28 @@ Now you can visit ``` http://127.0.0.1:80 ``` on your local browser to access th
 ## Here is the flow of the whole code:
 ```Frontend (frontend/frontend.py):```
 1. Frontend: <br />
-    - The frontend is a Flask web application that serves an HTML template at the root route ("/")
-2. Upload Page (/upload): <br />
-  *User uploads an image through a form. <br />
-  *The image is sent as a POST request to /upload route.
-3. Image Upload Handling: <br />
-  *The Flask app in the frontend (frontend.py) prepares the image data. <br />
-  *Sends a POST request to the OpenCV backend (detect_people endpoint) with the image attached.
+    - The frontend is a Flask web application that serves an HTML template at the root route ("/") <br />
+    - When the user uploads an image through the web interface, the /upload endpoint is triggered. <br />
+    - The uploaded image is read and resized if its width is greater than 640 pixels. <br />
+    - The resized image is then converted to a byte stream and sent as a file in a POST request to the /detect_people endpoint of the backend. <br />
 
-
-
-
-```Backend (opencv_backend/detect_people.py):``` <br />
-1. Detect People Endpoint (/detect_people): <br />
-  *Listens for POST requests containing an image to process.
-2. Image Processing: <br />
-  *Retrieves the image from the POST request. <br />
-  *Converts the image from bytes to a NumPy array using OpenCV. <br />
-  *Converts the image to grayscale.
-3. HOG Descriptor and Detection: <br />
-  *Initializes a Histogram of Oriented Gradients (HOG) descriptor. <br />
-  *Sets the Support Vector Machine (SVM) detector for detecting people. <br />
-  *Detects people in the image using HOG.
-4. Drawing Bounding Boxes: <br />
-  *Draws bounding boxes around detected people in the image.
-5. Image Encoding and Base64 Conversion: <br />
-  *Encodes the processed image to JPEG format. <br />
-  *Converts the encoded image to base64.
-6. JSON Response: <br />
-  *Sends a JSON response containing the base64-encoded image data.
-
+```Backend (backend/person_det.py):``` <br />
+2. Backend: <br />
+      - The backend is a Flask web application that runs an Inference Engine (OpenVINO) to perform pedestrian detection. <br />
+      - The backend loads the pre-trained pedestrian detection model (IR files) using OpenVINO. <br />
+      - It defines an endpoint /detect_people that accepts POST requests with an image file. <br />
+      - Upon receiving the image file, it converts the image from bytes to a NumPy array using OpenCV. <br />
+      - The input image is resized to match the expected input shape of the model (672x384 pixels). <br />
+      - Inference is performed on the resized image using the loaded model through the Inference Engine. <br />
+      - The bounding boxes of detected pedestrians are extracted based on a confidence threshold (set at 0.8 in this case). <br />
+      - The bounding box information, including coordinates and confidence scores, is then sent back to the frontend as a JSON response. <br />
 
 ```Frontend (frontend/frontend.py):``` <br />
-1. Image Processing Response: <br />
-  *Waits for the response from the backend. <br />
-  *Attempts to parse the JSON response from the backend.
-2. Result Page (/result): <br />
-  *Renders a result page (result.html) with the processed image received from the backend. <br />
-3. Result Rendering: <br />
-  *Renders the result page (result.html) with the processed image data received from the backend. <br />
-  *The processed image is displayed on the result page. <br />
-
+3. Frontend: (Continued) <br />
+    - The frontend receives the JSON response from the backend containing bounding box information.
+    - If the response status code is 200 (indicating success), the frontend draws bounding boxes on the original image using OpenCV.
+    - The image with bounding boxes is then converted to base64 encoding for display in HTML.
+    - The frontend renders the result.html template, displaying the processed image with bounding boxes and confidence scores.
    
 
 ```Overall Flow:``` <br />
