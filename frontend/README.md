@@ -15,7 +15,6 @@
 ## **Code Explanation** </br>
 The **frontend.py** script defines a Flask web application with the following main routes: </br>
 - **/:** The main index page. </br>
-- **/images/<path:filename>:** Serves uploaded images. </br>
 - **/upload:** Handles image upload, sends it to the OpenVINO backend, and renders the result page. </br>
 The Dockerfile installs the required dependencies (Flask and Requests) within the Docker image. </br>
 
