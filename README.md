@@ -1,4 +1,4 @@
-# opencv_det
+# openvino_det
 ## Dockerized website for human detection, using Python, Flask and OpenCV
 
 ### **First thing to do is clone this repository:**
